@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import json
 from pathlib import Path
 from typing import Dict
 
@@ -107,6 +108,15 @@ class MainWindow(QMainWindow):
         self.open_folder_btn.clicked.connect(self.open_folder)
         btn_layout.addWidget(self.open_folder_btn)
 
+        # Config save/load
+        self.save_cfg_btn = QPushButton("Guardar configuración")
+        self.save_cfg_btn.clicked.connect(self.save_config)
+        btn_layout.addWidget(self.save_cfg_btn)
+
+        self.load_cfg_btn = QPushButton("Cargar configuración")
+        self.load_cfg_btn.clicked.connect(self.load_config)
+        btn_layout.addWidget(self.load_cfg_btn)
+
         layout.addLayout(btn_layout)
 
         layout.addWidget(QLabel("Progreso:"))
@@ -157,6 +167,52 @@ class MainWindow(QMainWindow):
             QMessageBox.critical(self, "Error", f"Fallo: {e}")
         finally:
             self.run_btn.setEnabled(True)
+
+    def save_config(self):
+        """Guardar la configuración actual en config.json en la carpeta del proyecto."""
+        cfg = {
+            'base_url': self.url_edit.text().strip(),
+            'num_pages': int(self.pages_spin.value()),
+            'plantilla_path': self.plantilla_edit.text().strip(),
+            'salida_path': self.salida_edit.text().strip(),
+            'fila_inicial': int(self.fila_spin.value()),
+            'ultima_fila_datos': int(self.ultima_spin.value()),
+            'medicamento_dispositivo': self.medicamento_edit.text().strip(),
+            'aplica_institucion': self.aplica_edit.text().strip(),
+            'acciones_ejecutadas': self.acciones_edit.text().strip(),
+            'responsable_revision': self.responsable_edit.text().strip(),
+        }
+        try:
+            path = Path.cwd() / 'config.json'
+            path.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding='utf-8')
+            self.append_progress(f"Configuración guardada en {path}")
+            QMessageBox.information(self, "Guardado", f"Configuración guardada en {path}")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"No se pudo guardar la configuración: {e}")
+
+    def load_config(self):
+        """Cargar configuración desde config.json si existe y actualizar la UI."""
+        try:
+            path = Path.cwd() / 'config.json'
+            if not path.exists():
+                QMessageBox.warning(self, "No existe", "No se encontró 'config.json' en la carpeta del proyecto.")
+                return
+            data = json.loads(path.read_text(encoding='utf-8'))
+            # Aplicar valores si existen
+            self.url_edit.setText(data.get('base_url', self.url_edit.text()))
+            self.pages_spin.setValue(int(data.get('num_pages', self.pages_spin.value())))
+            self.plantilla_edit.setText(data.get('plantilla_path', self.plantilla_edit.text()))
+            self.salida_edit.setText(data.get('salida_path', self.salida_edit.text()))
+            self.fila_spin.setValue(int(data.get('fila_inicial', self.fila_spin.value())))
+            self.ultima_spin.setValue(int(data.get('ultima_fila_datos', self.ultima_spin.value())))
+            self.medicamento_edit.setText(data.get('medicamento_dispositivo', self.medicamento_edit.text()))
+            self.aplica_edit.setText(data.get('aplica_institucion', self.aplica_edit.text()))
+            self.acciones_edit.setText(data.get('acciones_ejecutadas', self.acciones_edit.text()))
+            self.responsable_edit.setText(data.get('responsable_revision', self.responsable_edit.text()))
+            self.append_progress(f"Configuración cargada desde {path}")
+            QMessageBox.information(self, "Cargado", f"Configuración cargada desde {path}")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"No se pudo cargar la configuración: {e}")
 
 
 def main():
