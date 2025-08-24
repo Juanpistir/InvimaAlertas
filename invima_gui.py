@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMessageBox,
     QPushButton,
+    QCheckBox,
     QSpinBox,
     QVBoxLayout,
     QWidget,
@@ -88,6 +89,24 @@ class MainWindow(QMainWindow):
         self.responsable_edit = QLineEdit("")
         datos_layout.addWidget(self.responsable_edit, 3, 1)
 
+        datos_layout.addWidget(QLabel("Logotipo (png):"), 4, 0)
+        self.logo_edit = QLineEdit("logotipo.png")
+        datos_layout.addWidget(self.logo_edit, 4, 1)
+        btn_logo = QPushButton("Seleccionar...")
+        btn_logo.clicked.connect(self.select_logo)
+        datos_layout.addWidget(btn_logo, 4, 2)
+
+        datos_layout.addWidget(QLabel("Anchura imagen (px):"), 5, 0)
+        self.logo_width_spin = QSpinBox()
+        self.logo_width_spin.setRange(10, 2000)
+        self.logo_width_spin.setValue(240)
+        datos_layout.addWidget(self.logo_width_spin, 5, 1)
+
+        # Indica si la plantilla ya contiene el logotipo (siempre activado por defecto)
+        self.template_has_logo_chk = QCheckBox("La plantilla ya contiene el logotipo")
+        self.template_has_logo_chk.setChecked(True)
+        datos_layout.addWidget(self.template_has_logo_chk, 6, 0, 1, 2)
+
         # URL y páginas
         grid.addWidget(QLabel("Base URL:"), 4, 0)
         self.url_edit = QLineEdit(
@@ -138,6 +157,12 @@ class MainWindow(QMainWindow):
         path, _ = QFileDialog.getOpenFileName(self, "Seleccionar plantilla", str(Path.cwd()), "Excel Files (*.xlsx)")
         if path:
             self.plantilla_edit.setText(path)
+    
+    @Slot()
+    def select_logo(self):
+        path, _ = QFileDialog.getOpenFileName(self, "Seleccionar logotipo", str(Path.cwd()), "Image Files (*.png *.jpg *.jpeg)")
+        if path:
+            self.logo_edit.setText(path)
 
     @Slot()
     def select_salida(self):
@@ -171,6 +196,9 @@ class MainWindow(QMainWindow):
             'aplica_institucion': self.aplica_edit.text().strip(),
             'acciones_ejecutadas': self.acciones_edit.text().strip(),
             'responsable_revision': self.responsable_edit.text().strip(),
+            'image_path': self.logo_edit.text().strip(),
+            'image_width_px': int(self.logo_width_spin.value()),
+            'template_has_logo': bool(self.template_has_logo_chk.isChecked()),
         }
         try:
             path = Path.cwd() / 'config.json'
@@ -199,6 +227,9 @@ class MainWindow(QMainWindow):
             self.aplica_edit.setText(data.get('aplica_institucion', self.aplica_edit.text()))
             self.acciones_edit.setText(data.get('acciones_ejecutadas', self.acciones_edit.text()))
             self.responsable_edit.setText(data.get('responsable_revision', self.responsable_edit.text()))
+            self.logo_edit.setText(data.get('image_path', self.logo_edit.text()))
+            self.logo_width_spin.setValue(int(data.get('image_width_px', self.logo_width_spin.value())))
+            self.template_has_logo_chk.setChecked(bool(data.get('template_has_logo', True)))
             self.append_progress(f"Configuración cargada desde {path}")
             QMessageBox.information(self, "Cargado", f"Configuración cargada desde {path}")
         except Exception as e:
@@ -217,6 +248,9 @@ class MainWindow(QMainWindow):
             'aplica_institucion': self.aplica_edit.text().strip(),
             'acciones_ejecutadas': self.acciones_edit.text().strip(),
             'responsable_revision': self.responsable_edit.text().strip(),
+            'image_path': self.logo_edit.text().strip(),
+            'image_width_px': int(self.logo_width_spin.value()),
+            'template_has_logo': bool(self.template_has_logo_chk.isChecked()),
         }
 
         self.progress_text.clear()

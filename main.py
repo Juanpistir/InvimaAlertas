@@ -3,6 +3,12 @@ from bs4 import BeautifulSoup
 import time
 import openpyxl
 from typing import Callable, Dict, List, Optional
+from pathlib import Path
+
+# Image handling for Excel
+from openpyxl.drawing.image import Image as OpenpyxlImage
+from PIL import Image as PILImage
+from io import BytesIO
 
 
 def scraper_invima(url: str, headers: Dict[str, str]) -> Optional[List[Dict[str, str]]]:
@@ -123,6 +129,53 @@ def run_invima_scraper(config: Dict, progress: Optional[Callable[[str], None]] =
             sheet[f'E{row}'] = aplica_institucion
             sheet[f'F{row}'] = acciones_ejecutadas
             sheet[f'H{row}'] = responsable_revision
+
+        # Decide whether to insert an image. If the template already contains the logo,
+        # the GUI sets `template_has_logo` (default True) and we skip insertion.
+        template_has_logo = bool(config.get('template_has_logo', True))
+        image_path = config.get('image_path', 'logotipo.png')
+        image_merge_range = config.get('image_merge_range', 'A1:B4')
+        # Desired width in pixels for the image (tweak if needed to fit the template)
+        image_width_px = int(config.get('image_width_px', 240))
+
+        if template_has_logo:
+            if progress:
+                progress("Plantilla marcada como que ya contiene el logotipo; omitiendo inserción de imagen.")
+        else:
+            try:
+                img_path_obj = Path(image_path)
+                if img_path_obj.exists():
+                    # Optionally merge the target cells so image is visually contained
+                    if image_merge_range:
+                        try:
+                            sheet.merge_cells(image_merge_range)
+                        except Exception:
+                            # ignore merge errors and continue
+                            pass
+
+                    # Open and resize with Pillow to target width, preserving aspect ratio
+                    pil_img = PILImage.open(str(img_path_obj))
+                    w, h = pil_img.size
+                    new_h = int(image_width_px * h / w)
+                    pil_resized = pil_img.resize((image_width_px, new_h), PILImage.LANCZOS)
+
+                    bio = BytesIO()
+                    pil_resized.save(bio, format='PNG')
+                    bio.seek(0)
+                    op_img = OpenpyxlImage(bio)
+                    op_img.width = image_width_px
+                    op_img.height = new_h
+                    # Anchor to the first cell of the merge (e.g. 'A1')
+                    anchor_cell = image_merge_range.split(':')[0]
+                    sheet.add_image(op_img, anchor_cell)
+                    if progress:
+                        progress(f"Imagen insertada desde: {image_path} en {image_merge_range}")
+                else:
+                    if progress:
+                        progress(f"No se encontró imagen en: {image_path} — omitiendo inserción.")
+            except Exception as e:
+                if progress:
+                    progress(f"Advertencia: no se pudo insertar la imagen: {e}")
 
         workbook.save(salida)
         if progress:

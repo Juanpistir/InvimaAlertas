@@ -1,3 +1,14 @@
+Insertar un logotipo en el reporte
+
+La aplicación ahora soporta insertar una imagen en el rango `A1:B4` del archivo generado si configuras el campo "Logotipo (png)" en la GUI o añades `image_path` en `config.json`.
+Para que la imagen se redimensione correctamente, instala Pillow:
+
+```powershell
+python -m pip install pillow
+```
+
+Control de anchura: puedes ajustar "Anchura imagen (px)" en la GUI (valor por defecto 240px).
+- PySide6 y PyInstaller están en `environment.yml` para reproducibilidad.
 InvimaReportes GUI
 
 Instrucciones rápidas:
