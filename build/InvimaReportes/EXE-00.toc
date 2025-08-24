@@ -1,0 +1,498 @@
+('C:\\Users\\Juan Pablo\\Desktop\\InvimaAlertas\\dist\\InvimaReportes.exe',
+ False,
+ False,
+ False,
+ 'C:\\Users\\Juan '
+ 'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-windowed.ico',
+ None,
+ False,
+ False,
+ b'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<assembly xmlns='
+ b'"urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">\n  <trustInfo x'
+ b'mlns="urn:schemas-microsoft-com:asm.v3">\n    <security>\n      <requested'
+ b'Privileges>\n        <requestedExecutionLevel level="asInvoker" uiAccess='
+ b'"false"/>\n      </requestedPrivileges>\n    </security>\n  </trustInfo>\n  '
+ b'<compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">\n    <'
+ b'application>\n      <supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f'
+ b'0}"/>\n      <supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>\n '
+ b'     <supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}"/>\n      <s'
+ b'upportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}"/>\n      <supporte'
+ b'dOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/>\n    </application>\n  <'
+ b'/compatibility>\n  <application xmlns="urn:schemas-microsoft-com:asm.v3">'
+ b'\n    <windowsSettings>\n      <longPathAware xmlns="http://schemas.micros'
+ b'oft.com/SMI/2016/WindowsSettings">true</longPathAware>\n    </windowsSett'
+ b'ings>\n  </application>\n  <dependency>\n    <dependentAssembly>\n      <ass'
+ b'emblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version='
+ b'"6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" langua'
+ b'ge="*"/>\n    </dependentAssembly>\n  </dependency>\n</assembly>',
+ True,
+ False,
+ None,
+ None,
+ None,
+ 'C:\\Users\\Juan '
+ 'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\InvimaReportes.pkg',
+ [('pyi-contents-directory _internal', '', 'OPTION'),
+  ('PYZ-00.pyz',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\PYZ-00.pyz',
+   'PYZ'),
+  ('struct',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\localpycs\\struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\localpycs\\pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\localpycs\\pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\localpycs\\pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyimod04_pywin32',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\localpycs\\pyimod04_pywin32.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_pyside6',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pyside6.py',
+   'PYSOURCE'),
+  ('invima_gui',
+   'C:\\Users\\Juan Pablo\\Desktop\\InvimaAlertas\\invima_gui.py',
+   'PYSOURCE'),
+  ('python311.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\python311.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\styles\\qmodernwindowsstyle.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\styles\\qmodernwindowsstyle.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qdirect2d.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\platforms\\qdirect2d.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qoffscreen.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\platforms\\qoffscreen.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qwindows.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\platforms\\qwindows.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qgif.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\imageformats\\qgif.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qsvg.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\imageformats\\qsvg.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qico.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\imageformats\\qico.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qminimal.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\platforms\\qminimal.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qpdf.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\imageformats\\qpdf.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qjpeg.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\imageformats\\qjpeg.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\iconengines\\qsvgicon.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\iconengines\\qsvgicon.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\networkinformation\\qnetworklistmanager.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\networkinformation\\qnetworklistmanager.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qschannelbackend.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\tls\\qschannelbackend.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qopensslbackend.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\tls\\qopensslbackend.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qcertonlybackend.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\lib\\qt6\\plugins\\tls\\qcertonlybackend.dll',
+   'BINARY'),
+  ('libcrypto-3-x64.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\libcrypto-3-x64.dll',
+   'BINARY'),
+  ('libssl-3-x64.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\libssl-3-x64.dll',
+   'BINARY'),
+  ('_decimal.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_bz2.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('unicodedata.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('select.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('_socket.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('openpyxl\\worksheet\\_writer.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\openpyxl\\worksheet\\_writer.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('openpyxl\\utils\\cell.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\openpyxl\\utils\\cell.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('_elementtree.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_elementtree.pyd',
+   'EXTENSION'),
+  ('pyexpat.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\pyexpat.pyd',
+   'EXTENSION'),
+  ('_ssl.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_ssl.pyd',
+   'EXTENSION'),
+  ('openpyxl\\worksheet\\_reader.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\openpyxl\\worksheet\\_reader.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('brotlicffi\\_brotlicffi.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\brotlicffi\\_brotlicffi.pyd',
+   'EXTENSION'),
+  ('_queue.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_queue.pyd',
+   'EXTENSION'),
+  ('_ctypes.pyd',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\DLLs\\_ctypes.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtWidgets.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PySide6\\QtWidgets.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtGui.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PySide6\\QtGui.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtNetwork.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PySide6\\QtNetwork.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('shiboken6\\Shiboken.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\shiboken6\\Shiboken.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtCore.cp311-win_amd64.pyd',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PySide6\\QtCore.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('api-ms-win-crt-locale-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-stdio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('zlib.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\zlib.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('Qt6Widgets.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\Qt6Widgets.dll',
+   'BINARY'),
+  ('MSVCP140.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\MSVCP140.dll',
+   'BINARY'),
+  ('Qt6Gui.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\Qt6Gui.dll',
+   'BINARY'),
+  ('Qt6Core.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\Qt6Core.dll',
+   'BINARY'),
+  ('VCRUNTIME140_1.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('Qt6Network.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\Qt6Network.dll',
+   'BINARY'),
+  ('Qt6Svg.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\Qt6Svg.dll',
+   'BINARY'),
+  ('Qt6Pdf.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\Qt6Pdf.dll',
+   'BINARY'),
+  ('libjpeg.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\libjpeg.dll',
+   'BINARY'),
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('liblzma.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\liblzma.dll',
+   'BINARY'),
+  ('LIBBZ2.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\LIBBZ2.dll',
+   'BINARY'),
+  ('libexpat.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\libexpat.dll',
+   'BINARY'),
+  ('python3.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\python3.dll',
+   'BINARY'),
+  ('ffi.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\ffi.dll',
+   'BINARY'),
+  ('pyside6.cp311-win_amd64.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\pyside6.cp311-win_amd64.dll',
+   'BINARY'),
+  ('shiboken6.cp311-win_amd64.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\shiboken6.cp311-win_amd64.dll',
+   'BINARY'),
+  ('MSVCP140_2.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\MSVCP140_2.dll',
+   'BINARY'),
+  ('ucrtbase.dll',
+   'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\ucrtbase.dll',
+   'BINARY'),
+  ('MSVCP140_1.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\MSVCP140_1.dll',
+   'BINARY'),
+  ('libpng16.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\libpng16.dll',
+   'BINARY'),
+  ('zstd.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\zstd.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('icuin73.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\icuin73.dll',
+   'BINARY'),
+  ('icuuc73.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\icuuc73.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-namedpipe-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-processenvironment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-file-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-libraryloader-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-libraryloader-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-fibers-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-fibers-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-timezone-l1-1-0.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('icudt73.dll',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Library\\bin\\icudt73.dll',
+   'BINARY'),
+  ('plantilla.xlsx',
+   'C:\\Users\\Juan Pablo\\Desktop\\InvimaAlertas\\plantilla.xlsx',
+   'DATA'),
+  ('certifi\\py.typed',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\certifi\\py.typed',
+   'DATA'),
+  ('certifi\\cacert.pem',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\certifi\\cacert.pem',
+   'DATA'),
+  ('base_library.zip',
+   'C:\\Users\\Juan '
+   'Pablo\\Desktop\\InvimaAlertas\\build\\InvimaReportes\\base_library.zip',
+   'DATA')],
+ [],
+ False,
+ False,
+ 1756028428,
+ [('runw.exe',
+   'C:\\Users\\Juan '
+   'Pablo\\.conda\\envs\\InvimaReportes\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
+   'EXECUTABLE')],
+ 'C:\\Users\\Juan Pablo\\.conda\\envs\\InvimaReportes\\python311.dll')

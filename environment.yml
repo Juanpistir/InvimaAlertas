@@ -1,0 +1,10 @@
+name: InvimaReportes
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - requests
+  - beautifulsoup4
+  - openpyxl
+  - pyside6
+  - pyinstaller
