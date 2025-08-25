@@ -6,7 +6,7 @@ from pathlib import Path
 from PySide6.QtGui import QFontDatabase, QFont, QPixmap, QPainter, QColor
 from typing import Dict
 
-from PySide6.QtCore import Qt, Slot, QUrl, QSize
+from PySide6.QtCore import Qt, Slot, QUrl, QSize, Signal, QObject, QThread
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtGui import QIcon
 from PySide6.QtGui import QPixmap
@@ -33,6 +33,7 @@ from PySide6.QtWidgets import (
     QTextEdit,
     QFrame,
     QGraphicsDropShadowEffect,
+    QProgressBar,
 )
 from PySide6.QtGui import QIcon
 
@@ -74,18 +75,20 @@ class MainWindow(QMainWindow):
         btn_salida.clicked.connect(self.select_salida)
         grid.addWidget(btn_salida, 1, 2)
 
-        # Filas
+        # Filas: put three numeric controls in one row (Fila inicial | Última fila | Número de páginas)
         grid.addWidget(QLabel("Fila inicial:"), 2, 0)
         self.fila_spin = QSpinBox()
         self.fila_spin.setRange(1, 1000)
         self.fila_spin.setValue(6)
+        self.fila_spin.setFixedWidth(90)
         grid.addWidget(self.fila_spin, 2, 1)
 
-        grid.addWidget(QLabel("Última fila (datos):"), 3, 0)
+        grid.addWidget(QLabel("Última fila (datos):"), 2, 2)
         self.ultima_spin = QSpinBox()
         self.ultima_spin.setRange(1, 10000)
         self.ultima_spin.setValue(34)
-        grid.addWidget(self.ultima_spin, 3, 1)
+        self.ultima_spin.setFixedWidth(90)
+        grid.addWidget(self.ultima_spin, 2, 3)
 
         # Datos fijos
         datos_group = QGroupBox("Datos fijos")
@@ -159,7 +162,7 @@ class MainWindow(QMainWindow):
         lbl = QLabel("Anchura imagen (px):")
         lbl.setObjectName('rowLabel')
         lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        datos_layout.addWidget(lbl, 5, 0)
+        datos_layout.addWidget(lbl, 4, 3)
         try:
             self.apply_card_shadow(lbl)
         except Exception:
@@ -168,8 +171,8 @@ class MainWindow(QMainWindow):
         self.logo_width_spin.setRange(10, 2000)
         self.logo_width_spin.setValue(240)
         # Make numeric inputs compact so width fits content better
-        self.logo_width_spin.setFixedWidth(100)
-        datos_layout.addWidget(self.logo_width_spin, 5, 1)
+        self.logo_width_spin.setFixedWidth(90)
+        datos_layout.addWidget(self.logo_width_spin, 4, 4)
 
         # Indica si la plantilla ya contiene el logotipo (siempre activado por defecto)
         self.template_has_logo_chk = QCheckBox("La plantilla ya contiene el logotipo")
@@ -188,12 +191,13 @@ class MainWindow(QMainWindow):
         )
         grid.addWidget(self.url_edit, 4, 1, 1, 2)
 
-        grid.addWidget(QLabel("Número de páginas:"), 5, 0)
+        # Número de páginas moved to the same row as the fila controls
+        grid.addWidget(QLabel("Número de páginas:"), 2, 4)
         self.pages_spin = QSpinBox()
         self.pages_spin.setRange(1, 1000)
         self.pages_spin.setValue(2)
         self.pages_spin.setFixedWidth(90)
-        grid.addWidget(self.pages_spin, 5, 1)
+        grid.addWidget(self.pages_spin, 2, 5)
 
         layout.addLayout(grid)
         layout.addWidget(datos_group)
@@ -222,6 +226,11 @@ class MainWindow(QMainWindow):
 
         layout.addLayout(btn_layout)
         layout.addWidget(QLabel("Progreso:"))
+        # Progress bar (hidden until scraping starts)
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setVisible(False)
+        layout.addWidget(self.progress_bar)
+
         self.progress_text = QTextEdit()
         self.progress_text.setObjectName('progressBox')
         self.progress_text.setReadOnly(True)
@@ -385,16 +394,73 @@ class MainWindow(QMainWindow):
             'image_width_px': int(self.logo_width_spin.value()),
             'template_has_logo': bool(self.template_has_logo_chk.isChecked()),
         }
-
+        # Clear previous logs and start background worker so GUI remains responsive
         self.progress_text.clear()
         self.run_btn.setEnabled(False)
-        try:
-            salida = invima_main.run_invima_scraper(config, progress=self.append_progress)
-            QMessageBox.information(self, "Terminado", f"Reporte generado: {salida}")
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Fallo: {e}")
-        finally:
+        self.progress_bar.setVisible(True)
+        # Indeterminate progress while worker runs
+        self.progress_bar.setRange(0, 0)
+
+        # Worker to run scraper in background thread
+        class ScraperWorker(QObject):
+            progress = Signal(str)
+            finished = Signal(str)
+            error = Signal(str)
+
+            def __init__(self, cfg: Dict):
+                super().__init__()
+                self.cfg = cfg
+
+            @Slot()
+            def run(self):
+                try:
+                    # progress callback will emit signals to main thread
+                    def progress_cb(text: str):
+                        try:
+                            self.progress.emit(str(text))
+                        except Exception:
+                            pass
+
+                    salida = invima_main.run_invima_scraper(self.cfg, progress=progress_cb)
+                    self.finished.emit(str(salida))
+                except Exception as e:
+                    self.error.emit(str(e))
+
+        # Create thread and worker
+        self._worker_thread = QThread(self)
+        self._worker = ScraperWorker(config)
+        self._worker.moveToThread(self._worker_thread)
+
+        # Connect signals
+        self._worker.progress.connect(self.append_progress)
+
+        def _on_finished(salida_path: str):
+            self.progress_bar.setVisible(False)
+            self.progress_bar.setRange(0, 100)
             self.run_btn.setEnabled(True)
+            QMessageBox.information(self, "Terminado", f"Reporte generado: {salida_path}")
+            # cleanup
+            try:
+                self._worker_thread.quit()
+                self._worker_thread.wait(2000)
+            except Exception:
+                pass
+
+        def _on_error(msg: str):
+            self.progress_bar.setVisible(False)
+            self.run_btn.setEnabled(True)
+            QMessageBox.critical(self, "Error", f"Fallo: {msg}")
+            try:
+                self._worker_thread.quit()
+                self._worker_thread.wait(2000)
+            except Exception:
+                pass
+
+        self._worker.finished.connect(_on_finished)
+        self._worker.error.connect(_on_error)
+        # Start work when thread starts
+        self._worker_thread.started.connect(self._worker.run)
+        self._worker_thread.start()
 
 
 def main():
