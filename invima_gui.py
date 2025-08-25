@@ -3,10 +3,16 @@ from __future__ import annotations
 import sys
 import json
 from pathlib import Path
+from PySide6.QtGui import QFontDatabase, QFont, QPixmap, QPainter, QColor
 from typing import Dict
 
-from PySide6.QtCore import Qt, Slot, QUrl
+from PySide6.QtCore import Qt, Slot, QUrl, QSize
 from PySide6.QtGui import QDesktopServices
+from PySide6.QtGui import QIcon
+from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPainter, QColor
+from PySide6.QtSvg import QSvgRenderer
+from PySide6.QtWidgets import QSizePolicy
 from PySide6.QtWidgets import (
     QApplication,
     QFileDialog,
@@ -19,12 +25,16 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPushButton,
     QCheckBox,
+    QScrollArea,
     QSpinBox,
     QVBoxLayout,
     QWidget,
     QGroupBox,
     QTextEdit,
+    QFrame,
+    QGraphicsDropShadowEffect,
 )
+from PySide6.QtGui import QIcon
 
 import main as invima_main
 
@@ -33,11 +43,20 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Invima Reportes - GUI")
-
+        # Central container wrapped later in a scroll area
         central = QWidget()
         layout = QVBoxLayout(central)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(14)
+
+        # App title (large, iOS-like)
+        title = QLabel("Invima Reportes")
+        title.setObjectName('titleLabel')
+        layout.addWidget(title)
 
         grid = QGridLayout()
+        grid.setHorizontalSpacing(12)
+        grid.setVerticalSpacing(10)
 
         # Plantilla
         grid.addWidget(QLabel("Plantilla (xlsx):"), 0, 0)
@@ -70,42 +89,97 @@ class MainWindow(QMainWindow):
 
         # Datos fijos
         datos_group = QGroupBox("Datos fijos")
+        # Center and emphasize the group title like an iOS header
+        datos_group.setAlignment(Qt.AlignHCenter)
+        datos_group.setFont(QFont(self.font().family(), 10, QFont.Bold))
         datos_layout = QGridLayout()
+        datos_layout.setHorizontalSpacing(10)
+        datos_layout.setVerticalSpacing(8)
+        datos_layout.setContentsMargins(14, 18, 14, 12)
         datos_group.setLayout(datos_layout)
 
-        datos_layout.addWidget(QLabel("Medicamento / Dispositivo:"), 0, 0)
+        lbl = QLabel("Medicamento / Dispositivo:")
+        lbl.setObjectName('rowLabel')
+        lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        datos_layout.addWidget(lbl, 0, 0)
+        try:
+            self.apply_card_shadow(lbl)
+        except Exception:
+            pass
         self.medicamento_edit = QLineEdit("DISPOSITIVO MÉDICO")
         datos_layout.addWidget(self.medicamento_edit, 0, 1)
 
-        datos_layout.addWidget(QLabel("Aplica institución:"), 1, 0)
+        lbl = QLabel("Aplica institución:")
+        lbl.setObjectName('rowLabel')
+        lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        datos_layout.addWidget(lbl, 1, 0)
+        try:
+            self.apply_card_shadow(lbl)
+        except Exception:
+            pass
         self.aplica_edit = QLineEdit("NO")
         datos_layout.addWidget(self.aplica_edit, 1, 1)
 
-        datos_layout.addWidget(QLabel("Acciones ejecutadas:"), 2, 0)
+        lbl = QLabel("Acciones ejecutadas:")
+        lbl.setObjectName('rowLabel')
+        lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        datos_layout.addWidget(lbl, 2, 0)
+        try:
+            self.apply_card_shadow(lbl)
+        except Exception:
+            pass
         self.acciones_edit = QLineEdit("N/A")
         datos_layout.addWidget(self.acciones_edit, 2, 1)
 
-        datos_layout.addWidget(QLabel("Responsable revisión:"), 3, 0)
+        lbl = QLabel("Responsable revisión:")
+        lbl.setObjectName('rowLabel')
+        lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        datos_layout.addWidget(lbl, 3, 0)
+        try:
+            self.apply_card_shadow(lbl)
+        except Exception:
+            pass
         self.responsable_edit = QLineEdit("")
         datos_layout.addWidget(self.responsable_edit, 3, 1)
 
-        datos_layout.addWidget(QLabel("Logotipo (png):"), 4, 0)
+        lbl = QLabel("Logotipo (png):")
+        lbl.setObjectName('rowLabel')
+        lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        datos_layout.addWidget(lbl, 4, 0)
+        try:
+            self.apply_card_shadow(lbl)
+        except Exception:
+            pass
         self.logo_edit = QLineEdit("logotipo.png")
         datos_layout.addWidget(self.logo_edit, 4, 1)
         btn_logo = QPushButton("Seleccionar...")
         btn_logo.clicked.connect(self.select_logo)
         datos_layout.addWidget(btn_logo, 4, 2)
 
-        datos_layout.addWidget(QLabel("Anchura imagen (px):"), 5, 0)
+        lbl = QLabel("Anchura imagen (px):")
+        lbl.setObjectName('rowLabel')
+        lbl.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        datos_layout.addWidget(lbl, 5, 0)
+        try:
+            self.apply_card_shadow(lbl)
+        except Exception:
+            pass
         self.logo_width_spin = QSpinBox()
         self.logo_width_spin.setRange(10, 2000)
         self.logo_width_spin.setValue(240)
+        # Make numeric inputs compact so width fits content better
+        self.logo_width_spin.setFixedWidth(100)
         datos_layout.addWidget(self.logo_width_spin, 5, 1)
 
         # Indica si la plantilla ya contiene el logotipo (siempre activado por defecto)
         self.template_has_logo_chk = QCheckBox("La plantilla ya contiene el logotipo")
+        self.template_has_logo_chk.setObjectName('rowLabel')
         self.template_has_logo_chk.setChecked(True)
         datos_layout.addWidget(self.template_has_logo_chk, 6, 0, 1, 2)
+        try:
+            self.apply_card_shadow(self.template_has_logo_chk)
+        except Exception:
+            pass
 
         # URL y páginas
         grid.addWidget(QLabel("Base URL:"), 4, 0)
@@ -118,6 +192,7 @@ class MainWindow(QMainWindow):
         self.pages_spin = QSpinBox()
         self.pages_spin.setRange(1, 1000)
         self.pages_spin.setValue(2)
+        self.pages_spin.setFixedWidth(90)
         grid.addWidget(self.pages_spin, 5, 1)
 
         layout.addLayout(grid)
@@ -126,10 +201,13 @@ class MainWindow(QMainWindow):
         # Botones y progreso
         btn_layout = QHBoxLayout()
         self.run_btn = QPushButton("Ejecutar Scraper")
+        # mark primary action for styling
+        self.run_btn.setProperty('role', 'primary')
         self.run_btn.clicked.connect(self.run_scraper)
         btn_layout.addWidget(self.run_btn)
 
         self.open_folder_btn = QPushButton("Abrir carpeta")
+        self.open_folder_btn.setProperty('role', 'secondary')
         self.open_folder_btn.clicked.connect(self.open_folder)
         btn_layout.addWidget(self.open_folder_btn)
 
@@ -143,14 +221,32 @@ class MainWindow(QMainWindow):
         btn_layout.addWidget(self.load_cfg_btn)
 
         layout.addLayout(btn_layout)
-
         layout.addWidget(QLabel("Progreso:"))
         self.progress_text = QTextEdit()
+        self.progress_text.setObjectName('progressBox')
         self.progress_text.setReadOnly(True)
         self.progress_text.setFixedHeight(200)
         layout.addWidget(self.progress_text)
 
-        self.setCentralWidget(central)
+        # Apply shadow effects to group and progress for a card-like feeling
+        try:
+            self.apply_card_shadow(datos_group)
+            self.apply_card_shadow(self.progress_text)
+        except Exception:
+            pass
+
+        # Put central widget inside a scroll area so the UI scrolls when window is small
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.NoFrame)
+        scroll.setWidget(central)
+        self.setCentralWidget(scroll)
+
+        # Try to set icons for main buttons if icons exist (render play icon in white)
+        self.try_set_icon(self.run_btn, 'play.svg', tint=QColor(255,255,255))
+        self.try_set_icon(self.open_folder_btn, 'folder-open.svg')
+        self.try_set_icon(self.save_cfg_btn, 'save.svg')
+        self.try_set_icon(self.load_cfg_btn, 'download.svg')
 
     @Slot()
     def select_plantilla(self):
@@ -182,6 +278,43 @@ class MainWindow(QMainWindow):
 
     def append_progress(self, text: str):
         self.progress_text.append(text)
+
+    def try_set_icon(self, button: QPushButton, icon_name: str, tint: QColor | None = None):
+        """Set QIcon from icons/<icon_name> if the file exists. If tint is provided, render SVG tinted to that color."""
+        icons_dir = Path(__file__).parent / 'icons'
+        svg_path = icons_dir / icon_name
+        if not svg_path.exists():
+            return
+        try:
+            if tint is None:
+                button.setIcon(QIcon(str(svg_path)))
+                button.setIconSize(QSize(20, 20))
+                return
+            # Render SVG to a pixmap and tint it
+            renderer = QSvgRenderer(str(svg_path))
+            pix = QPixmap(20, 20)
+            pix.fill(Qt.transparent)
+            p = QPainter(pix)
+            renderer.render(p)
+            p.setCompositionMode(QPainter.CompositionMode_SourceIn)
+            p.fillRect(pix.rect(), tint)
+            p.end()
+            button.setIcon(QIcon(pix))
+            button.setIconSize(QSize(20, 20))
+        except Exception:
+            try:
+                button.setIcon(QIcon(str(svg_path)))
+                button.setIconSize(QSize(20, 20))
+            except Exception:
+                pass
+
+    def apply_card_shadow(self, widget: QWidget):
+        """Apply a subtle drop shadow effect to a widget to emulate card depth."""
+        effect = QGraphicsDropShadowEffect(self)
+        effect.setBlurRadius(12)
+        effect.setOffset(0, 3)
+        effect.setColor(QColor(0, 0, 0, 70))
+        widget.setGraphicsEffect(effect)
 
     @Slot()
     def save_config(self):
@@ -266,6 +399,27 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    # Cargar tema iOS-like (QSS) si existe
+    qss_path = Path(__file__).parent / 'styles' / 'ios_like.qss'
+    if qss_path.exists():
+        try:
+            with qss_path.open('r', encoding='utf-8') as f:
+                app.setStyleSheet(f.read())
+        except Exception:
+            pass
+
+    # Intentar registrar una fuente bundled (fonts/Inter-Regular.ttf) si existe
+    fonts_dir = Path(__file__).parent / 'fonts'
+    inter_path = fonts_dir / 'Inter-Regular.ttf'
+    if inter_path.exists():
+        try:
+            QFontDatabase.addApplicationFont(str(inter_path))
+            app.setFont(QFont('Inter', 11))
+        except Exception:
+            pass
+    else:
+        # Ajuste de fuente por defecto para look más iOS-like en Windows
+        app.setFont(QFont('Segoe UI', 10))
     w = MainWindow()
     w.resize(900, 700)
     w.show()

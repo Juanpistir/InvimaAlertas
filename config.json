@@ -1,0 +1,15 @@
+{
+  "base_url": "https://app.invima.gov.co/alertas/dispositivos-medicos-invima?field_tipo_de_documento_value=1&field_a_o_value=1",
+  "num_pages": 2,
+  "plantilla_path": "plantilla.xlsx",
+  "salida_path": "reporte_invima_lleno.xlsx",
+  "fila_inicial": 6,
+  "ultima_fila_datos": 34,
+  "medicamento_dispositivo": "DISPOSITIVO MÉDICO",
+  "aplica_institucion": "NO",
+  "acciones_ejecutadas": "N/A",
+  "responsable_revision": "",
+  "image_path": "logotipo.png",
+  "image_width_px": 239,
+  "template_has_logo": true
+}

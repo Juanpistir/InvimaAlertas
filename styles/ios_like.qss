@@ -1,0 +1,163 @@
+/* iOS-like QSS theme - refined tuning */
+
+QWidget {
+  background: #F6F7F9;
+  color: #1C1C1E;
+  font-size: 11pt;
+}
+
+/* App title */
+QLabel#titleLabel {
+  font-size: 20pt;
+  font-weight: 700;
+  color: #111114;
+  margin-bottom: 6px;
+}
+
+/* Card-like group sections */
+QGroupBox {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 12px;
+  margin-top: 6px;
+  padding: 10px;
+}
+
+/* Primary / secondary button styles */
+QPushButton[role="primary"] {
+  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #0B84FF, stop:1 #0A6BE6);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 9px 18px;
+  font-weight: 600;
+  min-height: 36px;
+}
+QPushButton[role="primary"]:hover { background: #0A78FF; }
+QPushButton[role="primary"]:pressed { background: #085CD6; }
+
+QPushButton[role="secondary"] {
+  background: transparent;
+  color: #0B6CFF;
+  border: 1px solid rgba(11,108,255,0.12);
+  border-radius: 12px;
+  padding: 8px 14px;
+}
+
+/* Default button fallback */
+QPushButton {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 8px 14px;
+  color: #0B6CFF;
+  min-height: 32px;
+}
+
+QPushButton:hover { background: #F2F6FF; }
+QPushButton:pressed { background: #E6F0FF; }
+
+/* Inputs */
+QLineEdit, QTextEdit {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+  border: 1px solid rgba(11,108,255,0.9);
+  /* Qt QSS doesn't support box-shadow; use a subtle background change instead */
+  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgba(11,108,255,0.02), stop:1 #FFFFFF);
+}
+
+QSpinBox {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+/* Hide native small arrow graphics and provide cleaner large tappable area */
+QSpinBox::up-button, QSpinBox::down-button {
+  subcontrol-origin: border;
+  subcontrol-position: top right;
+  width: 28px; /* bigger tappable area */
+  border: none;
+  background: transparent;
+}
+QSpinBox::up-arrow, QSpinBox::down-arrow {
+  width: 0; height: 0; /* hide default arrow icons */
+}
+QSpinBox::down-button { subcontrol-position: bottom right; }
+
+/* Optional pseudo plus/minus drawn using border and before/after is not supported in QSS; consider custom widget if needed */
+
+QTextEdit#progressBox {
+  min-height: 140px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Scrollbar styling */
+QScrollBar:vertical {
+  background: transparent;
+  width: 8px;
+  margin: 4px 0px 4px 0px;
+}
+QScrollBar::handle:vertical {
+  background: rgba(60,60,67,0.22);
+  border-radius: 4px;
+  min-height: 20px;
+}
+QScrollBar::handle:vertical:hover { background: rgba(0,0,0,0.28); }
+
+/* remove the up/down arrow controls so scrollbar feels minimal */
+QScrollBar::add-line, QScrollBar::sub-line { height: 0px; }
+QScrollBar::add-page, QScrollBar::sub-page { background: transparent; }
+
+QCheckBox { spacing: 8px; }
+
+/* subtle separators */
+QFrame[frameShape="4"] { background: rgba(0,0,0,0.04); height: 1px; }
+
+/* GroupBox title like an iOS header */
+QGroupBox::title {
+  subcontrol-origin: margin;
+  subcontrol-position: top left;
+  padding: 6px 10px;
+  color: #111114;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* Left-column row label card (rounded light grey with subtle border) */
+QLabel#rowLabel {
+  background: #F2F4F7;
+  border: 1px solid rgba(0,0,0,0.03);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #111212;
+  min-height: 30px;
+}
+
+/* Also apply same card style to a QCheckBox that uses the rowLabel objectName */
+QCheckBox#rowLabel {
+  background: #F2F4F7;
+  border: 1px solid rgba(0,0,0,0.03);
+  border-radius: 10px;
+  padding: 6px 12px;
+  color: #111212;
+  min-height: 30px;
+}
+QCheckBox#rowLabel::indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: #111212; /* unchecked square color */
+  margin-left: 6px;
+}
+QCheckBox#rowLabel::indicator:checked {
+  background: #0B84FF; /* blue when checked */
+}
